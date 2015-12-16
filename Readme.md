@@ -2,17 +2,21 @@
 
 You only need to remember one mapping for comment:  `<leader>c`
 
+## Install
+
+    curl https://raw.githubusercontent.com/chemzqm/mycomment.vim/master/mycomment.vim > ~/.vim/plugin/mycomment.vim
+
 ## API
 
-### [count]<leader>cc
+### [count]\<leader\>cc
 
 Toggle comment of `count`(default current line) lines.
 
-### <leader>cip
+### \<leader\>cip
 
 Toggle comment of a block. Yes, it's a motion mapping, `ip` could be any motion object.
 
-### V\*\*\*<leader>c
+### V\*\*\*\<leader\>c
 
 Select a block and toggle comment
 
