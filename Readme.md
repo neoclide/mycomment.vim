@@ -2,11 +2,6 @@
 
 You only need to remember one mapping for comment:  `<leader>c`
 
-TODO:
-
-* comment/uncomment depend on current line
-* indent depend on current line
-
 ## Install
 
     curl https://raw.githubusercontent.com/chemzqm/mycomment.vim/master/mycomment.vim > ~/.vim/plugin/mycomment.vim
