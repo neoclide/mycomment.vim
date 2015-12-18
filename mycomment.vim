@@ -97,7 +97,6 @@ function! s:CommentLines(start, end, cur)
       let min = sl > min ? min : sl
     endif
     call add(lines, line)
-    "call add(lines, s:CommentToggle(lnum, com_begin, com_end))
   endfor
   call map(lines, 's:CommentToggle(v:val, com_begin, com_end, hasComment, min)')
   "echo len(lines)
