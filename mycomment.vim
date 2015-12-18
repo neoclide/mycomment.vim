@@ -23,7 +23,6 @@ function! s:CommentFromSelected(type, ...)
     call emmet#toggleComment()
     return
   endif
-  let cur = getline('.')
   if a:0
     let start = line('v')
     let end = line('.')
@@ -36,6 +35,7 @@ function! s:CommentFromSelected(type, ...)
     normal! ']
     let end = line('.')
   endif
+  let cur = getline('.')
   call s:CommentLines(start, end, cur)
 endfunction
 
