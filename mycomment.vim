@@ -74,7 +74,7 @@ function! s:CommentToggle(line, com_beg, com_end, hasComment, min)
   let has = a:line[sl : len(a:com_beg) + sl - 1] ==# a:com_beg
   if a:hasComment && has
     let str = indent . a:line[len(a:com_beg) + sl : len(a:line)-len(a:com_end) - 1]
-  elseif !a:hasComment && !has
+  elseif !a:hasComment
     let str = a:com_beg . a:line[a:min : ] . a:com_end
     if a:min | let str = a:line[0 : a:min - 1] . str | endif
   else
