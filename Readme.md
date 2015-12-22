@@ -4,7 +4,7 @@ You only need to remember one mapping for comment:  `<leader>c`
 
 ## Install
 
-    curl https://raw.githubusercontent.com/chemzqm/mycomment.vim/master/mycomment.vim > ~/.vim/plugin/mycomment.vim
+Use your favourite plugin manager add something like `Bundle 'chemzqm/mycomment.vim'`
 
 ## API
 
