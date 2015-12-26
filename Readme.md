@@ -1,5 +1,7 @@
 # Mycomment
 
+_A stupid comment plugin made for stupid people:)_
+
 You only need to remember one mapping for comment:  `<leader>c`
 
 ## Install
