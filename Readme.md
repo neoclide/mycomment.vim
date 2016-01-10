@@ -1,6 +1,6 @@
 # Mycomment
 
-_A stupid comment plugin made for stupid people:)_
+_A stupid comment plugin made for people can't remember so many mappings:)_
 
 You only need to remember one mapping for comment:  `<leader>c`
 
