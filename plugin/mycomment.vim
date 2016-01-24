@@ -25,12 +25,9 @@ function! s:CommentFromSelected(type, ...)
     call emmet#toggleComment()
     return
   endif
-  let g:mode = a:type
   if a:0
     let start = line('v')
     let end = line('.')
-    let g:start = start
-    let g:end = end
   elseif a:type ==#'c'
     let start = line('.')
     let end = line('.')
