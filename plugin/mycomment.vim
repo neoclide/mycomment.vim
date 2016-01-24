@@ -4,7 +4,7 @@
 " Licence: Vim licence
 " Version: 0.2
 " ============================================================================
-if get(g:, "comment_loaded", 0)
+if get(g:, "comment_loaded", 0) || v:version < 704
   finish
 endif
 let g:comment_loaded = 1
@@ -12,25 +12,23 @@ let g:comment_loaded = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-vnoremap <silent> <leader>c :Comment<cr>
-nnoremap <silent> <leader>c :<C-u>set operatorfunc=<SID>CommentFromSelected<cr>g@
+vnoremap <silent> <leader>c :call <SID>CommentFromSelected('visual')<CR>
+nnoremap <silent> <leader>c :<C-u>set operatorfunc=<SID>CommentFromSelected<CR>g@
 nnoremap <silent> <leader>cc :<C-u>set opfunc=<SID>CommentFromSelected<Bar>exe 'normal! 'v:count1.'g@_'<CR>
 
 let s:xmls = ['html', 'xhtml', 'xml']
 
-function! s:CommentFromSelected(type, ...)
+function! s:CommentFromSelected(type, ...) range
+  let pos = getcurpos()
   let sel_save = &selection
   let &selection = "inclusive"
   if index(s:xmls, &ft) != -1 && exists('*emmet#toggleComment')
     call emmet#toggleComment()
     return
   endif
-  if a:0
-    let start = line('v')
-    let end = line('.')
-  elseif a:type ==#'c'
-    let start = line('.')
-    let end = line('.')
+  if a:type ==# 'visual'
+    let start = a:firstline
+    let end = a:lastline
   else
     normal! '[
     let start = line('.')
@@ -39,6 +37,7 @@ function! s:CommentFromSelected(type, ...)
   endif
   call s:CommentLines(start, end)
   let &selection = sel_save
+  call setpos('.', pos)
 endfunction
 
 let s:comment_begin = {
@@ -98,7 +97,6 @@ function! s:CommentLines(start, end)
   endfor
   let min_indent = min(indents)
   call map(lines, 's:CommentToggle(v:val, com_begin, com_end, hasComment, min_indent)')
-  "echo len(lines)
   call setline(a:start, lines)
 endfunction
 
