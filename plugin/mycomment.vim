@@ -19,6 +19,8 @@ nnoremap <silent> <leader>cc :<C-U>set opfunc=<SID>CommentFromSelected<Bar>exe '
 let s:xmls = ['html', 'xhtml', 'xml']
 
 function! s:CommentFromSelected(type, ...)
+  let sel_save = &selection
+  let &selection = "inclusive"
   if index(s:xmls, &ft) != -1 && exists('*emmet#toggleComment')
     call emmet#toggleComment()
     return
@@ -37,6 +39,7 @@ function! s:CommentFromSelected(type, ...)
   endif
   let cur = getline('.')
   call s:CommentLines(start, end, cur)
+  let &selection = sel_save
 endfunction
 
 let s:comment_begin = {
@@ -85,20 +88,17 @@ endfunction
 
 function! s:CommentLines(start, end, cur)
   let lines = []
+  let indents = []
   let com_begin = get(s:comment_begin, &ft, '#')
   let com_end = get(s:comment_end, &ft, '')
   let hasComment = substitute(a:cur, s:regex, '', '')[0 : len(com_begin) - 1] ==# com_begin ?
           \ 1 : 0
-  let min = 20
   for lnum in range(a:start, a:end)
-    let line = getline(lnum)
-    if min > 0
-      let sl = len(matchstr(line, s:regex))
-      let min = sl > min ? min : sl
-    endif
-    call add(lines, line)
+    call add(indents, indent(lnum))
+    call add(lines, getline(lnum))
   endfor
-  call map(lines, 's:CommentToggle(v:val, com_begin, com_end, hasComment, min)')
+  let min_indent = min(indents)
+  call map(lines, 's:CommentToggle(v:val, com_begin, com_end, hasComment, min_indent)')
   "echo len(lines)
   call setline(a:start, lines)
 endfunction
