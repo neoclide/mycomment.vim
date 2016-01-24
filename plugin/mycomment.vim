@@ -4,7 +4,7 @@
 " Licence: Vim licence
 " Version: 0.1
 " ============================================================================
-if exists("g:comment_loaded") && !exists("g:comment_debug")
+if get(g:, "comment_loaded", 0)
   finish
 endif
 let g:comment_loaded = 1
