@@ -12,9 +12,9 @@ let g:comment_loaded = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-vnoremap <silent> <leader>c :call <SID>CommentFromSelected(visualmode(), 1)<cr>
-nnoremap <silent> <leader>c :set operatorfunc=<SID>CommentFromSelected<cr>g@
-nnoremap <silent> <leader>cc :<C-U>set opfunc=<SID>CommentFromSelected<Bar>exe 'norm! 'v:count1.'g@_'<CR>
+vnoremap <silent> <leader>c :Comment<cr>
+nnoremap <silent> <leader>c :<C-u>set operatorfunc=<SID>CommentFromSelected<cr>g@
+nnoremap <silent> <leader>cc :<C-u>set opfunc=<SID>CommentFromSelected<Bar>exe 'normal! 'v:count1.'g@_'<CR>
 
 let s:xmls = ['html', 'xhtml', 'xml']
 
@@ -25,9 +25,12 @@ function! s:CommentFromSelected(type, ...)
     call emmet#toggleComment()
     return
   endif
+  let g:mode = a:type
   if a:0
     let start = line('v')
     let end = line('.')
+    let g:start = start
+    let g:end = end
   elseif a:type ==#'c'
     let start = line('.')
     let end = line('.')
@@ -37,8 +40,7 @@ function! s:CommentFromSelected(type, ...)
     normal! ']
     let end = line('.')
   endif
-  let cur = getline('.')
-  call s:CommentLines(start, end, cur)
+  call s:CommentLines(start, end)
   let &selection = sel_save
 endfunction
 
@@ -86,12 +88,12 @@ function! s:CommentToggle(line, com_beg, com_end, hasComment, min)
   return str
 endfunction
 
-function! s:CommentLines(start, end, cur)
+function! s:CommentLines(start, end)
   let lines = []
   let indents = []
   let com_begin = get(s:comment_begin, &ft, '#')
   let com_end = get(s:comment_end, &ft, '')
-  let hasComment = substitute(a:cur, s:regex, '', '')[0 : len(com_begin) - 1] ==# com_begin ?
+  let hasComment = substitute(getline('.'), s:regex, '', '')[0 : len(com_begin) - 1] ==# com_begin ?
           \ 1 : 0
   for lnum in range(a:start, a:end)
     call add(indents, indent(lnum))
@@ -103,5 +105,7 @@ function! s:CommentLines(start, end, cur)
   call setline(a:start, lines)
 endfunction
 
+command! -range=1 -nargs=0 Comment :call s:CommentLines(<line1>, <line2>)
 
 let &cpo = s:save_cpo
+unlet s:save_cpo
