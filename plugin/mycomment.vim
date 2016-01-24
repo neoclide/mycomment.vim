@@ -2,7 +2,7 @@
 " Description: An easy comment plugin
 " Author: Qiming Zhao <chemzqm@gmail.com>
 " Licence: Vim licence
-" Version: 0.1
+" Version: 0.2
 " ============================================================================
 if get(g:, "comment_loaded", 0)
   finish
