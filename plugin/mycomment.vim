@@ -85,6 +85,8 @@ function! s:CommentToggle(line, com_beg, com_end, hasComment, min)
 endfunction
 
 function! s:CommentLines(start, end)
+  let g:s = a:start
+  let g:e = a:end
   let lines = []
   let indents = []
   let com_begin = get(s:comment_begin, &ft, '#')
@@ -100,7 +102,7 @@ function! s:CommentLines(start, end)
   call setline(a:start, lines)
 endfunction
 
-command! -range=1 -nargs=0 Comment :call s:CommentLines(<line1>, <line2>)
+command! -range -nargs=0 Comment :call s:CommentLines(<line1>, <line2>)
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
