@@ -41,7 +41,7 @@ function! s:CommentFromSelected(type, ...) range
 endfunction
 
 let s:comment_begin = {
-      \"c"          : "/*",
+      \"c"          : "//",
       \"cpp"        : "//",
       \"css"        : "/*",
       \"default"    : "#",
@@ -59,7 +59,6 @@ let s:comment_begin = {
 
 " (optional)
 let s:comment_end = {
-      \"c"          : "*/",
       \"css"        : "*/",
       \"default"    : "",
       \"xhtml"      : "-->",
