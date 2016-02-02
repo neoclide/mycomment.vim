@@ -41,6 +41,7 @@ INTRODUCTION		|mycomment-introduction|
 INSTALLATION		|mycomment-installation|
 INTERFACE		|mycomment-interface|
   MAPPINGS			|mycomment-mappings|
+  CONFIG			|mycomment-config|
 CHANGELOG		|mycomment-changelog|
 
 ==============================================================================
@@ -51,8 +52,9 @@ every language,  for languages including `html` `xhtml` `xml` |emmet| is used
 to comment the tags if you have it installed.
 
 Note: mycomment is not working every kinds of filetype, it would use `#` to
-toggle comment if it's an unknown filetype for mycomment, you can change the
-code to support the filetype you want.
+toggle comment if it's an unknown filetype for mycomment, you can set
+b:comment_begin and b:comment_end variable as needed, see |mycomment-config|
+(or change the source code, PR is welcome)
 
 ==============================================================================
 INSTALLATION				*mycomment-installation*
@@ -83,6 +85,20 @@ MAPPINGS 				*mycomment-mappings*
 
 v_<leader>c		You can use visual select and press <leader>c to
 			toggle comment of selected lines
+
+------------------------------------------------------------------------------
+CONFIG					*mycomment-config*
+
+b:comment_begin
+
+	Set comment begin of current buffer.
+
+b:comment_end
+
+	Set comment end of current buffer.
+
+------------------------------------------------------------------------------
+MAPPINGS 				*mycomment-mappings*
 
 ==============================================================================
 CHANGELOG				 *mycomment-changelog*

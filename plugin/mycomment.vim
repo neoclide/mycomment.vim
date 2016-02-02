@@ -88,8 +88,8 @@ function! s:CommentLines(start, end)
   let g:e = a:end
   let lines = []
   let indents = []
-  let com_begin = get(s:comment_begin, &ft, '#')
-  let com_end = get(s:comment_end, &ft, '')
+  let com_begin = get(b:, 'comment_begin', get(s:comment_begin, &ft, '#'))
+  let com_end = get(b:, 'comment_end', get(s:comment_end, &ft, ''))
   let hasComment = substitute(getline('.'), s:regex, '', '')[0 : len(com_begin) - 1] ==# com_begin ?
           \ 1 : 0
   for lnum in range(a:start, a:end)
