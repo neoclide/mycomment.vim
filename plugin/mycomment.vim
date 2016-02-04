@@ -97,6 +97,9 @@ function! s:CommentLines(start, end)
     call add(lines, getline(lnum))
   endfor
   let min_indent = min(indents)
+  if min_indent && getline(a:start)[0] =~# '\t'
+    let min_indent = min_indent/&tabstop
+  endif
   call map(lines, 's:CommentToggle(v:val, com_begin, com_end, hasComment, min_indent)')
   call setline(a:start, lines)
 endfunction
