@@ -16,7 +16,7 @@ vnoremap <silent> <leader>c :call <SID>CommentFromSelected('visual')<CR>
 nnoremap <silent> <leader>c :<C-u>set operatorfunc=<SID>CommentFromSelected<CR>g@
 nnoremap <silent> <leader>cc :<C-u>set opfunc=<SID>CommentFromSelected<Bar>exe 'normal! 'v:count1.'g@_'<CR>
 
-let s:xmls = ['html', 'xhtml', 'xml']
+let s:xmls = ['html', 'xhtml', 'xml', 'eruby']
 
 function! s:CommentFromSelected(type, ...) range
   let pos = getcurpos()
@@ -55,6 +55,7 @@ let s:comment_begin = {
       \"xhtml"      : "<!--",
       \"xml"        : "<!--",
       \"html"       : "<!--",
+      \"eruby"       : "<!--",
       \}
 
 " (optional)
@@ -65,6 +66,7 @@ let s:comment_end = {
       \"xml"        : "-->",
       \"html"       : "-->",
       \"markdown"   : "-->",
+      \"eruby"       : "-->",
       \}
 
 let s:regex = '^\s*'
