@@ -44,6 +44,7 @@ let s:comment_begin = {
       \"c"          : "//",
       \"cpp"        : "//",
       \"css"        : "/*",
+      \"scss"        : "/*",
       \"default"    : "#",
       \"go"         : "//",
       \"java"       : "//",
@@ -61,6 +62,7 @@ let s:comment_begin = {
 " (optional)
 let s:comment_end = {
       \"css"        : "*/",
+      \"scss"        : "*/",
       \"default"    : "",
       \"xhtml"      : "-->",
       \"xml"        : "-->",
