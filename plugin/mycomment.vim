@@ -44,6 +44,7 @@ let s:comment_begin = {
       \"c"          : "//",
       \"cpp"        : "//",
       \"css"        : "/*",
+      \"wxss"        : "/*",
       \"scss"        : "/*",
       \"default"    : "#",
       \"go"         : "//",
@@ -55,6 +56,7 @@ let s:comment_begin = {
       \"markdown"   : "<!--",
       \"xhtml"      : "<!--",
       \"xml"        : "<!--",
+      \"wxml"        : "<!--",
       \"html"       : "<!--",
       \"eruby"       : "<!--",
       \}
@@ -62,10 +64,12 @@ let s:comment_begin = {
 " (optional)
 let s:comment_end = {
       \"css"        : "*/",
+      \"wxss"        : "*/",
       \"scss"        : "*/",
       \"default"    : "",
       \"xhtml"      : "-->",
       \"xml"        : "-->",
+      \"wxml"        : "-->",
       \"html"       : "-->",
       \"markdown"   : "-->",
       \"eruby"       : "-->",
