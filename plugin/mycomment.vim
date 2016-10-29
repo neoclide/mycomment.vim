@@ -50,6 +50,7 @@ let s:comment_begin = {
       \"go"         : "//",
       \"java"       : "//",
       \"javascript" : "//",
+      \"typescript" : "//",
       \"plaintex"   : "%",
       \"tex"        : "%",
       \"vim"        : "\"",
