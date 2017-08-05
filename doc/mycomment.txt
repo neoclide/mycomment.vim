@@ -7,8 +7,8 @@
 	           |___/~
 	
 Author		: Qiming Zhao <chemzqm@gmail.com>
-Version		: 0.1.0
-Last Change	: Jan 04 2016
+Version		: 0.2.0
+Last Change	: Aug 05, 2017
 
 License : MIT license {{{
 
@@ -83,8 +83,9 @@ MAPPINGS 				*mycomment-mappings*
 
 <leader>c{motion}	Toggle comment by {motion} object
 
-v_<leader>c		You can use visual select and press <leader>c to
-			toggle comment of selected lines
+v_<leader>cc		Add or remove for all selected lines.
+
+v_<leader>ct		Toggle comment of each selected line.
 
 ------------------------------------------------------------------------------
 CONFIG					*mycomment-config*
@@ -102,6 +103,9 @@ CHANGELOG				*mycomment-changelog*
 
 0.1.0	2016-1-4
 	- init.
+
+0.2.0   2017-8-5
+	- add toggle comment mapping
 
 ==============================================================================
 

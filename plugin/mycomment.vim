@@ -12,11 +12,23 @@ let g:comment_loaded = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-vnoremap <silent> <leader>c :call <SID>CommentFromSelected('visual')<CR>
+vnoremap <silent> <leader>cc :call <SID>CommentFromSelected('visual')<CR>
+vnoremap <silent> <leader>ct :call <SID>ToggleCommentFromSelected()<CR>
 nnoremap <silent> <leader>c :<C-u>set operatorfunc=<SID>CommentFromSelected<CR>g@
 nnoremap <silent> <leader>cc :<C-u>set opfunc=<SID>CommentFromSelected<Bar>exe 'normal! 'v:count1.'g@_'<CR>
 
 let s:xmls = ['html', 'xhtml', 'xml', 'eruby', 'wxml']
+
+function! s:ToggleCommentFromSelected()
+  let line = getline('.')
+  if empty(line) | return | endif
+  if index(s:xmls, &ft) != -1 | return | endif
+  let com_beg = get(b:, 'comment_begin', get(s:comment_begin, &ft, '#'))
+  let com_end = get(b:, 'comment_end', get(s:comment_end, &ft, ''))
+  let hasComment = substitute(getline('.'), s:regex, '', '')[0 : len(com_beg) - 1] ==# com_beg ? 1 : 0
+  let str = s:CommentToggle(line, com_beg, com_end, hasComment, indent('.'))
+  call setline('.', str)
+endfunction
 
 function! s:CommentFromSelected(type, ...) range
   let pos = getcurpos()
@@ -44,12 +56,13 @@ let s:comment_begin = {
       \"c"          : "//",
       \"cpp"        : "//",
       \"css"        : "/*",
-      \"wxss"        : "/*",
-      \"scss"        : "/*",
+      \"wxss"       : "/*",
+      \"scss"       : "/*",
       \"default"    : "#",
       \"go"         : "//",
       \"java"       : "//",
-      \"javascript" : "//",
+      \"swift"      : "//",
+      \"javascript" : "// ",
       \"typescript" : "//",
       \"plaintex"   : "%",
       \"tex"        : "%",
@@ -57,9 +70,9 @@ let s:comment_begin = {
       \"markdown"   : "<!--",
       \"xhtml"      : "<!--",
       \"xml"        : "<!--",
-      \"wxml"        : "<!--",
+      \"wxml"       : "<!--",
       \"html"       : "<!--",
-      \"eruby"       : "<!--",
+      \"eruby"      : "<!--",
       \}
 
 " (optional)

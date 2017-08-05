@@ -28,6 +28,10 @@ You can use `.` to repeat your last comment command, no need [vim-repeat](https:
 
 If you have [emmet-vim](https://github.com/mattn/emmet-vim), the plugin would use emmet comment function for comment toggle of tags in html/xml/xhtml files
 
+## TODO
+
+* support comment string option
+
 ## License
 
 MIT
