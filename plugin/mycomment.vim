@@ -12,8 +12,8 @@ let g:comment_loaded = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-vnoremap <silent> <leader>cc :call <SID>CommentFromSelected('visual')<CR>
-vnoremap <silent> <leader>ct :call <SID>ToggleCommentFromSelected()<CR>
+vnoremap <silent> <leader>c :call <SID>CommentFromSelected('visual')<CR>
+vnoremap <silent> <leader>t :call <SID>ToggleCommentFromSelected()<CR>
 nnoremap <silent> <leader>c :<C-u>set operatorfunc=<SID>CommentFromSelected<CR>g@
 nnoremap <silent> <leader>cc :<C-u>set opfunc=<SID>CommentFromSelected<Bar>exe 'normal! 'v:count1.'g@_'<CR>
 
@@ -62,7 +62,7 @@ let s:comment_begin = {
       \"go"         : "//",
       \"java"       : "//",
       \"swift"      : "//",
-      \"javascript" : "// ",
+      \"javascript" : "//",
       \"typescript" : "//",
       \"plaintex"   : "%",
       \"tex"        : "%",
