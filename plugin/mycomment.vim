@@ -62,6 +62,8 @@ let s:comment_begin = {
       \"go"         : "//",
       \"java"       : "//",
       \"swift"      : "//",
+      \"json"      : "// ",
+      \"jsonc"      : "// ",
       \"javascript" : "// ",
       \"typescript" : "// ",
       \"plaintex"   : "%",
